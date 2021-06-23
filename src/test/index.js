@@ -1,17 +1,3 @@
-# request
-
-http请求工具，支持Vue、Web、Nodejs、微信小程序、支付宝小程序、uni-app
-
-### 实现情况
-- [x] Vue   
-- [x] Web
-- [x] Nodejs
-- [ ] 微信小程序
-- [ ] 支付宝小程序
-- [ ] uni-app
-
-### 业务调用说明
-```js
 const Fetch = require("../core/request.js");
 
 const request = new Fetch({
@@ -49,7 +35,7 @@ request.interceptor.response(function(res, abort) {
  */
 request.interceptor.response(Fetch.responseInterceptor());
 
-// 接口测试请求示例
+// 接口测试请求
 request.get('/index', {
     year: 2021,
     month: 10,
@@ -62,5 +48,3 @@ request.get('/index', {
 }).catch(error => {
     console.log("请求失败", error.data);
 });
-
-```
