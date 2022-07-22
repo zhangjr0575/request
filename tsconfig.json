@@ -1,16 +1,15 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "outDir": "./dist/",
-        "target": "es5",
-        "allowJs": true,
-        "sourceMap": true,
-        "importHelpers": true
-    },
-    "include": [
-        "./src/*"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es5",
+		"baseUrl": "./",
+		"strict": true,
+		"skipLibCheck": true,
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"types": ["jest"],
+	"exclude": ["node_modules"],
+	"includes": ["./src/**/*", "./types/**/*"]
 }

@@ -1,66 +1,84 @@
-# request
-
-http请求工具，支持Vue、Web、Nodejs、微信小程序、支付宝小程序、uni-app
+http请求工具，封装微信小程序、支付宝小程序、uni-app的request请求使其可以实现类似axios的调用方式
 
 ### 实现情况
-- [x] Vue   
-- [x] Web
-- [x] Nodejs
+
 - [ ] 微信小程序
 - [ ] 支付宝小程序
 - [ ] uni-app
 
-### 业务调用说明
+### 创建一个公用的请求实例
+
 ```js
-const Fetch = require("../core/request.js");
-
+import Fetch from '@/zhangjr0575/request';
+// 实例化支持baseURL, headers以及timeout
 const request = new Fetch({
-    baseURL: 'http://api.test.edu.fenqichaoren.com/human_api',
-    headers: {
-        "Token": "用户token"
-    }
+    baseURL: 'http://wthrcdn.etouch.cn'
 });
+```
 
-/**
- * @description 自定义请求发送前拦截,非必选项
- * @param requestConfig 发送的请求配置信息
- * @param abort 调用方法可中断本次请求
- */
-request.interceptor.request(function(requestConfig, abort) {
+### 添加一个请求拦截器
+
+拦截器我们可以创建多个，因为我们并没有限制允许设置的拦截器的上限数量
+
+```js
+request.interceptors.request.use(function(config) {
     // TODU
-    return requestConfig;
+    return config;
 });
 
-/**
- * @description 自定义请求响应后拦截,非必选项
- * @param res 响应体
- * @param abort 调用方法可中断本次请求
- */
-request.interceptor.response(function(res, abort) {
+```
+
+当我们返回一个false或则Promise.reject()时，当前请求将会被终止
+
+```js
+request.interceptors.request.use(function(config) {
+    return Promise.reject();
+});
+
+```
+
+### 添加一个响应拦截器
+
+响应体内容统一类型格式为`{data: any; headers: Record<string, string>; statusCode: number}`
+
+```js
+request.interceptors.httpError.use(function(res) {
     // TODU
     return res;
 });
+```
 
-/**
- * @description 使用默认提供的响应拦截器
- * @param res 响应体
- * @param abort 调用方法可中断本次请求
- * responseInterceptor可传入 {dataField, httpStatusField, errorField}分别配置响应有效的数据包字段,以及响应失败的数据包字段
- */
-request.interceptor.response(Fetch.responseInterceptor());
+### 添加一个异常拦截器
 
-// 接口测试请求示例
-request.get('/index', {
-    year: 2021,
-    month: 10,
-    day: 15,
-    hour: 6,
-    minute: 20,
-    second: 11,
-}).then(res => {
-    console.log("业务代码收到数据包:", res);
-}).catch(error => {
-    console.log("请求失败", error.data);
+任何非200的http请求状态将会在这里被监听到，
+异常内容统一类型格式为`{errCode: number; errMsg: string}`
+
+```js
+request.interceptors.response.use(function(res) {
+    // TODU
+    return res;
 });
+```
 
+### 发起一个http请求
+
+```js
+request.get('/weather_mini1', { city: '成都' }).then(res => {
+    console.log(res);
+}).catch(error => {
+    console.log(error);
+});
+```
+
+### 移除一个拦截器
+
+当我们添加一个拦截器后会返回一个值, 此时我们可以记录这个值并使用eject在适当的时候移除这个拦截器
+
+```js
+const interceptorId = request.interceptors.response.use(function(res) {
+    // TODU
+    return res;
+});
+// TODU
+request.interceptors.response.eject(interceptorId);
 ```
