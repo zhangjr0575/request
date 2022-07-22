@@ -6,11 +6,8 @@
 	"scripts": {
 		"build": "webpack",
 		"build-rollup": "rollup --config",
-		"test": "jest --verbose"
-	},
-	"repository": {
-		"type": "git",
-		"url": "http://121.37.13.237/frontPackage/request.git"
+		"test": "jest --verbose",
+		"publish": "npm run build && npm publish --access public"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.14.6",
@@ -43,7 +40,6 @@
 		"axios": "^0.27.2",
 		"core-js": "^3.23.5",
 		"merge": "^2.1.1",
-		"rollup": "^2.77.0",
-		"vue": "^3.2.37"
+		"rollup": "^2.77.0"
 	}
 }
