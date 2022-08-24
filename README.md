@@ -42,7 +42,7 @@ request.interceptors.request.use(function(config) {
 响应体内容统一类型格式为`{data: any; headers: Record<string, string>; statusCode: number}`
 
 ```js
-request.interceptors.httpError.use(function(res) {
+request.interceptors.response.use(function(res) {
     // TODU
     return res;
 });
@@ -54,7 +54,7 @@ request.interceptors.httpError.use(function(res) {
 异常内容统一类型格式为`{errCode: number; errMsg: string}`
 
 ```js
-request.interceptors.response.use(function(res) {
+request.interceptors.httpError.use(function(res) {
     // TODU
     return res;
 });
