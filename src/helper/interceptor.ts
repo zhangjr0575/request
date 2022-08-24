@@ -32,7 +32,6 @@ export default class Interceptor {
       }
       return Promise.resolve(_data || data);
     } catch (err: any) {
-      console.log("不活到异常信息", err);
       return Promise.reject(data);
     }
   }
