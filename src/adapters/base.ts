@@ -9,7 +9,6 @@ import merge from "merge";
 import { spliceUrl } from "@/utils";
 
 import Interceptor from "@/helper/interceptor";
-// import MpalipayAdapter from "@/adapters/mp-alipay";
 
 // 参数字段修正清单
 const requestParamFieldFix: Record<string, any> = {
@@ -81,6 +80,7 @@ export default class Request {
         _params.success = function (res: any) {
           resolve([undefined, Request.normalRequestBody(res)]);
         };
+        // 常见的401, 404等不会进入fail回调
         _params.fail = function (err: any) {
           resolve([Request.normalRequestError(err), undefined]);
         };
