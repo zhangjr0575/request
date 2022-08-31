@@ -19,7 +19,7 @@ export function isHttpUrl(url: string): boolean {
 export function spliceUrl(url: string, baseURL?: string) {
 	if (isHttpUrl(url) || !baseURL) return url;
 
-	return `${baseURL.replace(/\/$/, "")}/${baseURL.replace(/^\//, "")}`;
+	return `${baseURL.replace(/\/$/, "")}/${url.replace(/^\//, "")}`;
 }
 
 /**
