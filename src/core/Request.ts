@@ -28,10 +28,10 @@ export default class Request implements RequestInterface {
 	constructor(config?: RequestCreateConfig) {
 		this.config = merge(this.config, config || {});
 		// @ts-ignore
-		if (typeof wx || typeof uni) {
+		if (typeof wx !== "undefined" || typeof uni !== "undefined") {
 			this.adapter = new MpWechatAdapter();
 			// @ts-ignore
-		} else if (typeof my) {
+		} else if (typeof my !== "undefined") {
 			this.adapter = new MpAliyAdapter();
 		} else {
 			throw new TypeError(Request.adapterMissingMsg);
