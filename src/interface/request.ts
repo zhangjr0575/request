@@ -1,10 +1,12 @@
 /**
- * 适配器类型约束
+ * 请求接口
  */
 
-import { RequestCreateConfig, RequestAliasConfig, ResponseBodyNormal, ResponseErrorNormal } from './config';
+import { RequestConfig, RequestCreateConfig, RequestCoverConfig, RequestResponse, RequestResponseBody, RequestResponseError } from "./index";
 
-export interface Request {
-	get(url: string, data?: any, config?: RequestAliasConfig): Promise<ResponseBodyNormal | ResponseErrorNormal>;
-	post(url: string, data?: any, config?: RequestAliasConfig): Promise<ResponseBodyNormal | ResponseErrorNormal>;
+export default interface Request {
+	create(config: RequestCreateConfig): Request;
+	get(url: string, data?: any, config?: RequestCoverConfig): Promise<RequestResponseBody | RequestResponseError>;
+	post(url: string, data?: any, config?: RequestCoverConfig): Promise<RequestResponseBody | RequestResponseError>;
+	request(params: RequestConfig): Promise<RequestResponseBody | RequestResponseError>;
 }

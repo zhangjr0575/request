@@ -1,15 +1,16 @@
 {
-	"compilerOptions": {
-		"module": "commonjs",
-		"target": "es5",
-		"baseUrl": "./",
-		"strict": true,
-		"skipLibCheck": true,
-		"paths": {
-			"@/*": ["src/*"]
-		}
-	},
-	"types": ["jest"],
-	"exclude": ["node_modules"],
-	"includes": ["./src/**/*", "./types/**/*"]
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "ES6",
+    "module": "ES2015",
+    "baseUrl": "./",
+    "strict": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "types": ["jest"],
+  "exclude": ["node_modules"],
+  "includes": ["./src/**/*", "./types/**/*"]
 }

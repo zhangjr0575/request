@@ -1,6 +1,6 @@
 export type RequestMethod = {
-	POST: 'POTS';
-	GET: 'GET';
+	POST: "POTS";
+	GET: "GET";
 };
 
 export type RequestCreateConfig = {
@@ -18,15 +18,17 @@ export type RequestConfig = {
 	dataType?: string;
 };
 
-export type RequestAliasConfig = Pick<RequestConfig, 'headers' | 'timeout' | 'dataType'>;
+export type RequestCoverConfig = Pick<RequestConfig, "headers" | "timeout" | "dataType">;
 
-export type ResponseBodyNormal = {
+export type RequestResponseBody = {
 	data: any;
 	headers: any;
 	statusCode: number;
 };
 
-export type ResponseErrorNormal = {
+export type RequestResponseError = {
 	errCode: number;
 	errMsg: string;
 };
+
+export type RequestResponse = [void | RequestResponseError, void | RequestResponseError];

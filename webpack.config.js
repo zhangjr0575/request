@@ -1,29 +1,28 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
 	entry: {
-		index: './src/main.ts',
-		alipay: './src/adapters/mp-alipay.ts'
+		index: "./src/main.ts"
 	},
-	mode: 'production',
-	// mode: 'development',
+	// mode: "production",
+	mode: "development",
 	output: {
-		filename: '[name].js',
-		libraryTarget: 'umd',
-		path: path.resolve(__dirname, 'dist')
+		filename: "[name].js",
+		libraryTarget: "umd",
+		path: path.resolve(__dirname, "dist")
 	},
 	resolve: {
 		alias: {
-			'@': path.resolve(__dirname, 'src')
+			"@": path.resolve(__dirname, "src")
 		},
-		extensions: ['.tsx', '.ts', '.jsx', '.js']
+		extensions: [".tsx", ".ts", ".jsx", ".js"]
 	},
 	module: {
 		rules: [
 			{
 				test: /\.ts$/,
-				use: ['ts-loader'],
-				include: [path.resolve(__dirname, 'src')]
+				use: ["ts-loader"],
+				include: [path.resolve(__dirname, "src")]
 			}
 		]
 	}
