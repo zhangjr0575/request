@@ -1,6 +1,6 @@
 {
 	"name": "@zhangjr0575/request",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "http通用请求工具",
 	"main": "dist/index.js",
 	"scripts": {
@@ -36,6 +36,11 @@
 		"vue",
 		"axios"
 	],
+	"homepage": "https://github.com/zhangjr0575/request#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com:zhangjr0575/request.git"
+	},
 	"author": "张家瑞",
 	"license": "ISC",
 	"dependencies": {

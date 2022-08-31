@@ -1,8 +1,3 @@
-export type RequestMethod = {
-	POST: "POTS";
-	GET: "GET";
-};
-
 export type RequestCreateConfig = {
 	baseURL?: string;
 	timeout?: number;
@@ -12,7 +7,7 @@ export type RequestCreateConfig = {
 export type RequestConfig = {
 	url: string;
 	data?: any;
-	method?: RequestMethod;
+	method?: "post" | "get";
 	headers?: Record<string, string>;
 	timeout?: number;
 	dataType?: string;

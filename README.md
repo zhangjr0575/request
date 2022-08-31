@@ -9,7 +9,7 @@ http请求工具，封装微信小程序、支付宝小程序、uni-app的reques
 ### 创建一个公用的请求实例
 
 ```js
-import Fetch from '@/zhangjr0575/request';
+import Fetch from '@zhangjr0575/request';
 // 实例化支持baseURL, headers以及timeout
 const request = new Fetch({
     baseURL: 'http://wthrcdn.etouch.cn'

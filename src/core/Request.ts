@@ -24,6 +24,7 @@ export default class Request implements RequestInterface {
 		httpError: new Interceptor()
 	};
 	adapter: AdapterInterface;
+	static adapterMissingMsg = "当前环境没有适合的适配器, 自己实现一个吧~";
 	constructor(config?: RequestCreateConfig) {
 		this.config = merge(this.config, config || {});
 		// @ts-ignore
@@ -33,7 +34,7 @@ export default class Request implements RequestInterface {
 		} else if (typeof my) {
 			this.adapter = new MpAliyAdapter();
 		} else {
-			throw new TypeError(`当前环境没有合适的适配器, 自己实现一个吧~`);
+			throw new TypeError(Request.adapterMissingMsg);
 		}
 	}
 	create(config?: RequestCreateConfig): RequestInterface {
@@ -51,10 +52,11 @@ export default class Request implements RequestInterface {
 	}
 	async request(params: RequestConfig): Promise<RequestResponseBody> {
 		try {
+			if (!this.adapter) return Promise.reject(Request.adapterMissingMsg);
 			// 请求前拦截
 			const _params: RequestConfig = await Interceptor.exe(this.interceptors.request.handlers, params);
 			// 发起请求
-			const [error, response] = await this.adapter.request(_params).then();
+			const [error, response] = await this.adapter.request(_params);
 			// 异常拦截和普通响应拦截分开处理
 			if (error) {
 				return Promise.reject(await Interceptor.exe(this.interceptors.httpError.handlers, error));

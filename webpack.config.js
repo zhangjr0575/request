@@ -4,11 +4,11 @@ module.exports = {
 	entry: {
 		index: "./src/main.ts"
 	},
-	// mode: "production",
-	mode: "development",
+	mode: "production",
 	output: {
 		filename: "[name].js",
 		libraryTarget: "umd",
+		library: "Request",
 		path: path.resolve(__dirname, "dist")
 	},
 	resolve: {
@@ -25,5 +25,8 @@ module.exports = {
 				include: [path.resolve(__dirname, "src")]
 			}
 		]
+	},
+	performance: {
+		hints: false
 	}
 };

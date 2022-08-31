@@ -11,7 +11,8 @@ export default {
 	},
 	output: {
 		dir: "dist",
-		format: "es",
+		format: "umd",
+		name: "Request",
 		entryFileNames: "[name].js"
 	},
 	plugins: [

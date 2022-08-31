@@ -19,7 +19,7 @@ export function isHttpUrl(url: string): boolean {
 export function spliceUrl(url: string, baseURL?: string) {
 	if (isHttpUrl(url) || !baseURL) return url;
 
-	return `${baseURL}/${url}`.replace(/(?<!\:)(\/{2,})/g, "/");
+	return `${baseURL.replace(/\/$/, "")}/${baseURL.replace(/^\//, "")}`;
 }
 
 /**
@@ -41,11 +41,12 @@ export function hasRepeatRecordItem(records: Record<number, any>, target: any) {
  * @param convertMap 字段转换映射表
  * @return Record<string, any> 返回原对象
  */
-export function objFieldConvert(obj: Record<string, any>, convertMap: Record<string, string>) {
+export function objFieldConvert<T>(obj: T, convertMap: Record<string, string>): T {
 	for (let key in convertMap) {
 		if (key in obj) {
-			obj[convertMap.key] = obj[key];
+			obj[convertMap[key]] = obj[key];
 			delete obj[key];
 		}
 	}
+	return obj;
 }

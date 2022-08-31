@@ -1,3 +1,3 @@
-export * from "./src/interface";
+export * from "../src/interface";
 
-export default class Request {}
+export * from "../src/interface/request";
